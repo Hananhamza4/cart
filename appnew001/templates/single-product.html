@@ -11,7 +11,6 @@
 	<title>Single Product</title>
 
 	<!-- favicon -->
-	<link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
 	<!-- google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
@@ -164,16 +163,18 @@
 
 					<div class="single-product-form">
 						<form action="{% url 'add_to_cart' product.id %}" method="post">
-    {% csrf_token %}
-    <input type="number" name="quantity" value="1" min="1">
-    <!-- <button type="submit" class="cart-btn">
-        <i class="fas fa-shopping-cart"></i> Add to Cart -->
-		<a href="{% url 'cart' %}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>							</button>
-
-    </button>
-</form>
-
+							{% csrf_token %}
+							<input type="number" name="quantity" value="1" min="1">
+							<button type="submit" class="cart-btn">
+								<i class="fas fa-shopping-cart"></i> Add to Cart
+							</button>
+						</form>
+					
 						<p><strong>Categories: </strong>{{ product.category }}</p>
+					</div>
+					
+
+						
 					</div>
 
 					<h4>Share:</h4>

@@ -154,10 +154,36 @@ def update_cart(request, cart_item_id):
 
 
 # Remove item from cart
-def remove_from_cart(request, cart_item_id):
+def remove_from_cart(request,cart_item_id):
     cart_item = get_object_or_404(CartItem, id=cart_item_id)
     cart_item.delete()
     return redirect('cart')
+
+@login_required
+def userprofile(request):
+    user = request.user
+
+    if request.method == "POST":
+        username = request.POST.get("username")
+        email = request.POST.get("email")
+        
+
+        # Update user info
+        user.username = username
+        user.email = email
+        user.save()
+        messages.success(request, "Profile updated successfully!")
+        return redirect("userprofile")
+
+    return render(request, "userprofile.html", {"user": user})
+
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+
+def logout_view(request):
+    logout(request)  # This clears the session and logs out the user
+    return redirect('indexfun')  # 
+
 
 
 
